@@ -1,0 +1,48 @@
+# DAX Queries for Engagement Optimization Dashboard
+
+## Total Users Optimization
+TotalUsers = COUNTROWS(Cleaned_Engagement_Optimization)
+
+## Bounce Rate Calculation
+BounceRate = 
+DIVIDE(
+    COUNTROWS(FILTER(Cleaned_Engagement_Optimization, Cleaned_Engagement_Optimization[bounceRate] = "1")), 
+    COUNTROWS(Cleaned_Engagement_Optimization), 
+    0
+)
+
+
+## Average Session Duration
+AverageSessionDuration = 
+AVERAGE(Cleaned_Engagement_Optimization[averageSessionDuration])
+
+
+## Total Sessions by Page
+TotalSessionsByPage = 
+SUMX(
+    VALUES(Cleaned_Engagement_Optimization[PageTitle]),
+    CALCULATE(SUM(Cleaned_Engagement_Optimization[sessions]))
+)
+
+
+## Engagement Rate
+EngagementRate = 
+DIVIDE(
+    SUM(Cleaned_Engagement_Optimization[engagementRate]), 
+    COUNTROWS(Cleaned_Engagement_Optimization), 
+    0
+)
+
+
+## Active Users
+Active Users = DISTINCTCOUNT('Cleaned_Engagement_Optimization'[activeUsers])
+
+
+## Session Medium
+Session Medium = COUNTROWS('Engagement_Optimization_Dashboard')
+
+
+## Sessions
+Sessions = DISTINCTCOUNT('Cleaned_Engagement_Optimization'[sessions])
+
+
